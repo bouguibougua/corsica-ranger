@@ -3,7 +3,11 @@ import { readFile, stat } from "node:fs/promises";
 import { resolve, extname, sep } from "node:path";
 
 export function serve() {
-  const root = resolve(import.meta.dirname, "../dist");
+  const root = resolve(
+    import.meta.dirname,
+    "..",
+    process.env.BUILD_DIR || "dist",
+  );
   const args = process.argv.slice(2);
   const portIndex = args.indexOf("--port");
   const port = Number(
@@ -20,12 +24,27 @@ export function serve() {
     ".xml": "application/xml; charset=utf-8",
     ".txt": "text/plain; charset=utf-8",
     ".pdf": "application/pdf",
+    ".json": "application/json; charset=utf-8",
   };
   const server = createServer(async (req, res) => {
     try {
-      const pathname = decodeURIComponent(
+      const requestedPath = decodeURIComponent(
         new URL(req.url, "http://localhost").pathname,
       );
+      const { basePath } = JSON.parse(
+        await readFile(resolve(root, "site-config.json"), "utf8"),
+      );
+      if (basePath && requestedPath === basePath) {
+        res.writeHead(301, { Location: `${basePath}/` });
+        res.end();
+        return;
+      }
+      if (!requestedPath.startsWith(`${basePath}/`)) {
+        res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+        res.end("404");
+        return;
+      }
+      const pathname = requestedPath.slice(basePath.length);
       let file = resolve(root, `.${pathname}`);
       if (file !== root && !file.startsWith(root + sep)) {
         res.writeHead(403);
@@ -39,7 +58,9 @@ export function serve() {
         "/historique": "/a-propos/",
       };
       if (legacy[pathname.replace(/\/$/, "")]) {
-        res.writeHead(301, { Location: legacy[pathname.replace(/\/$/, "")] });
+        res.writeHead(301, {
+          Location: `${basePath}${legacy[pathname.replace(/\/$/, "")]}`,
+        });
         res.end();
         return;
       }
@@ -62,9 +83,12 @@ export function serve() {
       res.end("404");
     }
   });
-  server.listen(port, "127.0.0.1", () =>
-    console.log(`Corsica Ranger : http://localhost:${port}`),
-  );
+  server.listen(port, "127.0.0.1", async () => {
+    const { basePath } = JSON.parse(
+      await readFile(resolve(root, "site-config.json"), "utf8"),
+    );
+    console.log(`Corsica Ranger : http://localhost:${port}${basePath}/`);
+  });
   return server;
 }
 if (process.argv[1] === import.meta.filename) serve();

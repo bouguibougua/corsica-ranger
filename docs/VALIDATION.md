@@ -1,5 +1,17 @@
 # Validation — 7 octobre 2026
 
+## Correctif GitHub Pages
+
+Le dépôt public servait le README via Jekyll au lieu du site construit. Le workflow `.github/workflows/deploy-pages.yml` construit et vérifie le site avant de publier `dist/`. Les URL de navigation, images, variantes responsives, scènes animées, polices et métadonnées suivent maintenant le chemin public fourni par GitHub Pages.
+
+Deux constructions isolées passent `npm run build` et `npm run check` : à la racine de `https://corsicaranger.com/` et sous `https://bouguibougua.github.io/corsica-ranger/`. **30 routes et 223 ressources** sont contrôlées dans chaque cas, avec les URL canoniques, hreflang, JSON-LD, sitemap, ancres et tarifs. La ressource supplémentaire comptée est la seconde police locale, désormais explicitement vérifiée. Le build local `dist/` reste configuré pour le domaine principal.
+
+Une vérification de régression à la racine confirme six visites FR/EN/IT à 1440 et 390 px : polices, hero, absence de débordement et d’erreur réseau/JavaScript.
+
+Sous `/corsica-ranger/`, Chrome/Playwright a réalisé **505 contrôles**, avec 14 visites initialisées et 63 requêtes de document. Les trois langues, les menus, la navigation, les ancres, les scènes du hero, la galerie, les filtres, la lightbox, le retour navigateur, le mouvement réduit et la consultation sans JavaScript sont vérifiés à 1440 et 390 px. **Aucun échec non résolu ni erreur applicative ou requête applicative hors préfixe.** Deux écarts du harnais ont été remplacés par des contrôles ciblés réussis ; les recherches automatiques de `/favicon.ico` du visualiseur d’image natif Chrome restent consignées séparément. Rapport : `/private/tmp/corsica-pages-check/project/verified-report.json`.
+
+Les versions et inputs des actions ont été vérifiés auprès de leurs sources officielles ; le YAML est valide. Aucun déploiement distant de ce correctif n’a été exécuté. La source Pages doit être réglée sur **GitHub Actions**, puis le workflow lancé après l’envoi des modifications : voir [la procédure](README.md).
+
 ## Mise à jour du propriétaire du 7 octobre
 
 Construction et contrôle statique réussis : **30 routes et 222 ressources**. Les trois traductions portent les mêmes informations actualisées : matin/après-midi buggy de 1h30 au même tarif, coucher de soleil en troisième position, préparation quad de 30 minutes, demi-journée 140 € seul / 150 € à deux, conseils et réservations. Les deux créneaux quad sont séparés visuellement et dans le texte accessible.

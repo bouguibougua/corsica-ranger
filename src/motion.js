@@ -243,6 +243,7 @@
   }
 
   function prepareNavigation() {
+    const assetPrefix = `${document.querySelector('meta[name="site-base-path"]')?.content || ""}/assets/`;
     document.addEventListener("click", (event) => {
       const anchor = event.target.closest("a[href]");
       if (
@@ -266,7 +267,7 @@
         !/^https?:$/.test(destination.protocol) ||
         destination.origin !== location.origin ||
         destination.pathname === location.pathname ||
-        destination.pathname.startsWith("/assets/")
+        destination.pathname.startsWith(assetPrefix)
       )
         return;
       event.preventDefault();

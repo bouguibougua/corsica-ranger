@@ -1,5 +1,6 @@
 import { languages, pathFor } from "./routes.mjs";
 import { reviewSelection, googleSummary } from "./reviews.mjs";
+import { createSiteConfig } from "./site-config.mjs";
 
 const E = (value) =>
   String(value ?? "").replace(
@@ -51,8 +52,29 @@ export function renderPage({ page, lang, t, assets, siteUrl }) {
     year: "numeric",
     timeZone: "Europe/Paris",
   }).format(new Date());
-  const { photos, gallery, villaPhotos } = assets;
-  const url = (key) => pathFor(key, lang);
+  const { basePath, publicPath, absoluteUrl } = createSiteConfig(siteUrl);
+  const scopeImage = (item) => ({
+    ...item,
+    src: publicPath(item.src),
+    srcset: item.srcset
+      .split(",")
+      .map((entry) => {
+        const [path, width] = entry.trim().split(/\s+/);
+        return `${publicPath(path)} ${width}`;
+      })
+      .join(", "),
+  });
+  const photos = Object.fromEntries(
+    Object.entries(assets.photos).map(([key, item]) => [key, scopeImage(item)]),
+  );
+  const gallery = assets.gallery.map(scopeImage);
+  const villaPhotos = Object.fromEntries(
+    Object.entries(assets.villaPhotos).map(([key, items]) => [
+      key,
+      items.map(scopeImage),
+    ]),
+  );
+  const url = (key) => publicPath(pathFor(key, lang));
   const external = (href, label, className = "text-link") =>
     `<a class="${className}" href="${E(href)}" target="_blank" rel="noopener noreferrer">${E(label)}${arrow}</a>`;
   const button = (href, label, style = "", isExternal = false) =>
@@ -74,7 +96,7 @@ export function renderPage({ page, lang, t, assets, siteUrl }) {
   const headingBlock = (eyebrow, title, text = "") =>
     `<div class="section-heading" data-reveal>${label(eyebrow)}${heading(title)}${text ? `<p class="section-description">${E(text)}</p>` : ""}</div>`;
   const logo = () =>
-    `<img class="brand-logo" src="/assets/logo.png" alt="Corsica Ranger" width="410" height="68">`;
+    `<img class="brand-logo" src="${publicPath("/assets/logo.png")}" alt="Corsica Ranger" width="410" height="68">`;
   const navIds = [
     "home",
     "buggy",
@@ -92,7 +114,7 @@ export function renderPage({ page, lang, t, assets, siteUrl }) {
       )
       .join("");
   const languageLinks = () =>
-    `<div class="language-links" role="group" aria-label="${E(t.ui.language)}">${languages.map((code) => `<a href="${pathFor(page, code)}" lang="${code}" hreflang="${code}" aria-label="${{ fr: "Français", en: "English", it: "Italiano" }[code]}"${lang === code ? ' aria-current="true"' : ""}>${{ fr: "🇫🇷", en: "🇬🇧", it: "🇮🇹" }[code]} <span>${code.toUpperCase()}</span></a>`).join("")}</div>`;
+    `<div class="language-links" role="group" aria-label="${E(t.ui.language)}">${languages.map((code) => `<a href="${publicPath(pathFor(page, code))}" lang="${code}" hreflang="${code}" aria-label="${{ fr: "Français", en: "English", it: "Italiano" }[code]}"${lang === code ? ' aria-current="true"' : ""}>${{ fr: "🇫🇷", en: "🇬🇧", it: "🇮🇹" }[code]} <span>${code.toUpperCase()}</span></a>`).join("")}</div>`;
   const header = `<a class="skip-link" href="#main">${E(t.ui.skip)}</a><header class="site-header"><div class="header-inner"><a class="brand" href="${url("home")}">${logo()}</a><nav class="desktop-nav" aria-label="${E(t.nav.home)}">${navLinks()}</nav><div class="header-actions"><details class="language-picker"><summary aria-label="${E(t.ui.language)}">${{ fr: "🇫🇷", en: "🇬🇧", it: "🇮🇹" }[lang]} ${lang.toUpperCase()}<span aria-hidden="true">⌄</span></summary>${languageLinks()}</details>${button(url("contact"), t.nav.book, "small")}<button class="menu-toggle icon-button" data-menu-open aria-label="${E(t.ui.openMenu)}" aria-controls="mobile-menu" aria-expanded="false">${icon("menu")}</button></div></div></header><dialog id="mobile-menu" aria-label="${E(t.ui.openMenu)}"><div class="mobile-menu-top"><a class="brand" href="${url("home")}">${logo()}</a><button class="icon-button" data-menu-close aria-label="${E(t.ui.closeMenu)}">${icon("close")}</button></div><nav class="mobile-nav" aria-label="${E(t.ui.openMenu)}">${navLinks()}</nav><div class="mobile-menu-bottom">${languageLinks()}${button(url("contact"), t.nav.book)}<a class="mobile-phone" href="tel:+33495703620">04 95 70 36 20</a></div></dialog>`;
   const footer = `<footer class="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><a href="${url("home")}">${logo()}</a><p class="footer-tagline">${E(t.footer.tagline)}</p><p>${E(t.footer.text)}</p></div><div class="footer-nav"><p class="eyebrow">${E(t.footer.explore)}</p>${navIds
     .filter((id) => id !== "home")
@@ -224,7 +246,7 @@ export function renderPage({ page, lang, t, assets, siteUrl }) {
       `<section class="not-found section container"><p class="eyebrow">404</p>${heading(t.notFound.title, "h1")}<p>${E(t.notFound.description)}</p>${button(url("home"), t.ui.backHome, "dark")}</section>`,
   }[page]();
   const meta = t.seo[page];
-  const canonical = `${siteUrl}${url(page)}`;
+  const canonical = absoluteUrl(pathFor(page, lang));
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -232,7 +254,7 @@ export function renderPage({ page, lang, t, assets, siteUrl }) {
     name: "Corsica Ranger",
     legalName: "SARL Belle Île",
     url: siteUrl,
-    image: `${siteUrl}${photos.hero.src}`,
+    image: absoluteUrl(assets.photos.hero.src),
     logo: `${siteUrl}/assets/logo.png`,
     telephone: "+33495703620",
     email: "corsicaranger2a@gmail.com",
@@ -259,7 +281,7 @@ export function renderPage({ page, lang, t, assets, siteUrl }) {
         "@type": "ListItem",
         position: 1,
         name: t.nav.home,
-        item: `${siteUrl}${url("home")}`,
+        item: absoluteUrl(pathFor("home", lang)),
       },
       ...(page !== "home"
         ? [
@@ -273,5 +295,5 @@ export function renderPage({ page, lang, t, assets, siteUrl }) {
         : []),
     ],
   };
-  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${E(meta.title)}</title><meta name="description" content="${E(meta.description)}"><meta name="theme-color" content="#20352e"><meta name="robots" content="${page === "notFound" ? "noindex,follow" : "index,follow"}"><link rel="canonical" href="${E(canonical)}">${languages.map((code) => `<link rel="alternate" hreflang="${code}" href="${E(`${siteUrl}${pathFor(page, code)}`)}">`).join("")}<link rel="alternate" hreflang="x-default" href="${E(`${siteUrl}${pathFor(page, "fr")}`)}"><meta property="og:type" content="website"><meta property="og:site_name" content="Corsica Ranger"><meta property="og:locale" content="${E(t.locale)}"><meta property="og:title" content="${E(meta.title)}"><meta property="og:description" content="${E(meta.description)}"><meta property="og:url" content="${E(canonical)}"><meta property="og:image" content="${siteUrl}/assets/social.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/assets/favicon.png" type="image/png"><link rel="preload" href="/assets/fonts/barlow-condensed-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/effects.css"><script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script><script type="application/ld+json">${JSON.stringify(breadcrumb).replace(/</g, "\\u003c")}</script><script src="/assets/motion.js" defer></script><script src="/assets/client.js" defer></script></head><body id="top" class="page-${page}">${header}<noscript><nav class="no-script-nav" aria-label="${E(t.nav.home)}">${navLinks()}${languageLinks()}</nav></noscript><main id="main">${content}</main>${["home", "buggy", "quad", "houses", "about", "gallery", "contact"].includes(page) ? marquee() : ""}${footer}${lightbox}</body></html>`;
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="site-base-path" content="${E(basePath)}"><title>${E(meta.title)}</title><meta name="description" content="${E(meta.description)}"><meta name="theme-color" content="#20352e"><meta name="robots" content="${page === "notFound" ? "noindex,follow" : "index,follow"}"><link rel="canonical" href="${E(canonical)}">${languages.map((code) => `<link rel="alternate" hreflang="${code}" href="${E(`${siteUrl}${pathFor(page, code)}`)}">`).join("")}<link rel="alternate" hreflang="x-default" href="${E(`${siteUrl}${pathFor(page, "fr")}`)}"><meta property="og:type" content="website"><meta property="og:site_name" content="Corsica Ranger"><meta property="og:locale" content="${E(t.locale)}"><meta property="og:title" content="${E(meta.title)}"><meta property="og:description" content="${E(meta.description)}"><meta property="og:url" content="${E(canonical)}"><meta property="og:image" content="${siteUrl}/assets/social.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="${publicPath("/assets/favicon.png")}" type="image/png"><link rel="preload" href="${publicPath("/assets/fonts/barlow-condensed-latin.woff2")}" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="${publicPath("/assets/styles.css")}"><link rel="stylesheet" href="${publicPath("/assets/effects.css")}"><script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script><script type="application/ld+json">${JSON.stringify(breadcrumb).replace(/</g, "\\u003c")}</script><script src="${publicPath("/assets/motion.js")}" defer></script><script src="${publicPath("/assets/client.js")}" defer></script></head><body id="top" class="page-${page}">${header}<noscript><nav class="no-script-nav" aria-label="${E(t.nav.home)}">${navLinks()}${languageLinks()}</nav></noscript><main id="main">${content}</main>${["home", "buggy", "quad", "houses", "about", "gallery", "contact"].includes(page) ? marquee() : ""}${footer}${lightbox}</body></html>`;
 }

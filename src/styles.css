@@ -1,13 +1,13 @@
 @font-face {
   font-family: Barlow;
-  src: url("/assets/fonts/barlow-condensed-latin.woff2") format("woff2");
+  src: url("fonts/barlow-condensed-latin.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: Manrope;
-  src: url("/assets/fonts/manrope-latin.woff2") format("woff2");
+  src: url("fonts/manrope-latin.woff2") format("woff2");
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;

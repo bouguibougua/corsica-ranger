@@ -1,18 +1,15 @@
 import { mkdir, readFile, writeFile, cp, access } from "node:fs/promises";
-import { resolve } from "node:path";
+import { resolve, relative } from "node:path";
 import { languages, pages, pathFor } from "../src/routes.mjs";
+import { createSiteConfig } from "../src/site-config.mjs";
 import { renderPage } from "../src/render.mjs";
 import * as assets from "../src/assets.mjs";
 import sharp from "sharp";
 
 const root = resolve(import.meta.dirname, "..");
-const out = resolve(root, "dist");
-const siteUrl = (process.env.SITE_URL || "https://corsicaranger.com").replace(
-  /\/$/,
-  "",
-);
-if (!/^https?:\/\/[^\s]+$/.test(siteUrl))
-  throw new Error("SITE_URL doit être une URL HTTP(S) valide.");
+const out = resolve(root, process.env.BUILD_DIR || "dist");
+const config = createSiteConfig(process.env.SITE_URL);
+const { siteUrl, publicPath } = config;
 await access(resolve(root, "public/assets/photos"));
 await mkdir(out, { recursive: true });
 await cp(resolve(root, "public"), out, { recursive: true });
@@ -20,6 +17,19 @@ await cp(resolve(root, "src/styles.css"), resolve(out, "assets/styles.css"));
 await cp(resolve(root, "src/client.js"), resolve(out, "assets/client.js"));
 await cp(resolve(root, "src/effects.css"), resolve(out, "assets/effects.css"));
 await cp(resolve(root, "src/motion.js"), resolve(out, "assets/motion.js"));
+await writeFile(resolve(out, ".nojekyll"), "");
+await writeFile(
+  resolve(out, "site-config.json"),
+  JSON.stringify(
+    {
+      siteUrl,
+      origin: config.origin,
+      basePath: config.basePath,
+    },
+    null,
+    2,
+  ) + "\n",
+);
 await sharp(resolve(root, `public${assets.photos.hero.src}`))
   .resize(1200, 630, { fit: "cover" })
   .composite([
@@ -59,14 +69,31 @@ await writeFile(
   resolve(out, "robots.txt"),
   `User-agent: *\nAllow: /\nSitemap: ${siteUrl}/sitemap.xml\n`,
 );
+const redirects = [
+  ["/location-ranger", "/buggy/"],
+  ["/location-quad", "/quad/"],
+  ["/nos-partenaires", "/maisons/"],
+  ["/historique", "/a-propos/"],
+  ["/mentions-legales", "/mentions-legales/"],
+];
 await writeFile(
   resolve(out, "_redirects"),
-  "/location-ranger /buggy/ 301\n/location-quad /quad/ 301\n/nos-partenaires /maisons/ 301\n/historique /a-propos/ 301\n/mentions-legales /mentions-legales/ 301\n",
+  redirects
+    .map(([from, to]) => `${publicPath(from)} ${publicPath(to)} 301\n`)
+    .join(""),
 );
 await writeFile(
   resolve(out, ".htaccess"),
-  'Options -Indexes\nDirectoryIndex index.html\nErrorDocument 404 /404.html\n<IfModule mod_rewrite.c>\nRewriteEngine On\nRewriteRule ^location-ranger/?$ /buggy/ [R=301,L]\nRewriteRule ^location-quad/?$ /quad/ [R=301,L]\nRewriteRule ^nos-partenaires/?$ /maisons/ [R=301,L]\nRewriteRule ^historique/?$ /a-propos/ [R=301,L]\n</IfModule>\n<IfModule mod_headers.c>\nHeader always set X-Content-Type-Options "nosniff"\nHeader always set Referrer-Policy "strict-origin-when-cross-origin"\n</IfModule>\n<IfModule mod_expires.c>\nExpiresActive On\nExpiresByType image/webp "access plus 30 days"\nExpiresByType font/woff2 "access plus 1 year"\n</IfModule>\n',
+  `Options -Indexes\nDirectoryIndex index.html\nErrorDocument 404 ${publicPath("/404.html")}\n<IfModule mod_rewrite.c>\nRewriteEngine On\n${redirects
+    .slice(0, 4)
+    .map(
+      ([from, to]) =>
+        `RewriteRule ^${from.slice(1)}/?$ ${publicPath(to)} [R=301,L]\n`,
+    )
+    .join(
+      "",
+    )}</IfModule>\n<IfModule mod_headers.c>\nHeader always set X-Content-Type-Options "nosniff"\nHeader always set Referrer-Policy "strict-origin-when-cross-origin"\n</IfModule>\n<IfModule mod_expires.c>\nExpiresActive On\nExpiresByType image/webp "access plus 30 days"\nExpiresByType font/woff2 "access plus 1 year"\n</IfModule>\n`,
 );
 console.log(
-  `Site construit : ${pages.length * languages.length} pages + pages 404, trois langues, dist/`,
+  `Site construit : ${pages.length * languages.length} pages + pages 404, trois langues, ${relative(root, out)}/ — ${siteUrl}/`,
 );

@@ -39,13 +39,24 @@ Les photos WebP et polices locales sont déjà présentes. `npm run assets` perm
 
 ## Mise en ligne
 
-La valeur canonical par défaut est `https://corsicaranger.com`. Pour une autre URL publique, reconstruire avec :
+### GitHub Pages
+
+Le workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) construit et vérifie le site, puis publie **`dist/`** à chaque push sur `main`. Il utilise l’URL fournie par GitHub Pages pour les liens, les ressources et les URL canoniques, y compris le sous-dossier `/corsica-ranger/`.
+
+Dans [le dépôt GitHub](https://github.com/bouguibougua/corsica-ranger), choisir **Settings → Pages → Build and deployment → Source → GitHub Actions**. Ouvrir ensuite **Actions → Déployer le site sur GitHub Pages → Run workflow** pour le premier lancement. Le site sera disponible à **https://bouguibougua.github.io/corsica-ranger/**.
+
+Les sources et les médias optimisés sont versionnés ; **ne pas committer `dist/`**. Les étapes détaillées, la vérification locale du sous-dossier et le dépannage sont dans [docs/README.md](docs/README.md).
+
+### Autre hébergement statique
+
+La valeur canonical par défaut est `https://corsicaranger.com`. Pour une autre URL publique, reconstruire et vérifier avec :
 
 ```sh
 SITE_URL=https://exemple.fr npm run build
+SITE_URL=https://exemple.fr npm run check
 ```
 
-Copier **le contenu de `dist/`**, y compris `.htaccess` si le serveur est Apache, à la racine web. Les ressources et les liens utilisent des chemins depuis la racine : l’hébergement dans un sous-dossier n’est pas prévu. Les fichiers `_redirects` et `.htaccess` préservent les principales anciennes URL. Pour Nginx ou un autre hébergeur, configurer les mêmes redirections et la page `404.html`.
+Copier **le contenu de `dist/`**, y compris `.htaccess` si le serveur est Apache, dans le dossier web correspondant à `SITE_URL`. Pour un hébergement dans un sous-dossier, inclure ce chemin dans `SITE_URL` avant la construction. Les fichiers `_redirects` et `.htaccess` préservent les principales anciennes URL sur les hébergeurs qui les prennent en charge. Pour Nginx ou un autre hébergeur, configurer les mêmes redirections et la page `404.html`.
 
 La réservation se fait sur place, par téléphone ou par e-mail. Il n’existe ni paiement, ni calendrier, ni formulaire. Aucun suivi publicitaire ou outil de mesure d’audience n’est intégré. Google Maps se charge uniquement à la demande. Les avis sont une sélection éditoriale de témoignages positifs, avec leur source et un lien vers tous les avis Google ; ils ne se synchronisent pas automatiquement.
 

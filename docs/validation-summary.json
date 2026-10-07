@@ -2,7 +2,7 @@
   "date": "2026-10-07",
   "static": {
     "routes": 30,
-    "resources": 222,
+    "resources": 223,
     "passed": true
   },
   "ownerUpdate": {
@@ -74,6 +74,41 @@
       "keyboardChecks": 15,
       "failures": 0,
       "limitation": "Photo/gradient backgrounds require manual contrast review"
+    }
+  },
+  "githubPages": {
+    "publicUrl": "https://bouguibougua.github.io/corsica-ranger/",
+    "basePathsChecked": [
+      "",
+      "/corsica-ranger"
+    ],
+    "staticRoutesPerBuild": 30,
+    "staticResourcesPerBuild": 223,
+    "staticPassed": true,
+    "rootBrowserRegressionVisits": 6,
+    "rootBrowserErrors": 0,
+    "workflowYamlValidated": true,
+    "remoteDeploymentExecuted": false,
+    "requiredRemoteSetting": "Settings → Pages → Source → GitHub Actions",
+    "browser": {
+      "languages": [
+        "fr",
+        "en",
+        "it"
+      ],
+      "widths": [
+        1440,
+        390
+      ],
+      "checksPerformed": 505,
+      "initializedVisits": 14,
+      "documentRequests": 63,
+      "unresolvedFailures": 0,
+      "applicationErrors": 0,
+      "escapedApplicationRequests": 0,
+      "supersededHarnessFindingsRechecked": 2,
+      "nativeImageFaviconDiagnostics": 2,
+      "report": "/private/tmp/corsica-pages-check/project/verified-report.json"
     }
   }
 }
