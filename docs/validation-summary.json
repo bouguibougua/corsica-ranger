@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-07",
+  "static": {
+    "routes": 30,
+    "resources": 222,
+    "passed": true
+  },
+  "ownerUpdate": {
+    "languages": [
+      "fr",
+      "en",
+      "it"
+    ],
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "initialVisits": 45,
+    "targetedVisits": 18,
+    "checksPerformed": 1439,
+    "unresolvedFailures": 0,
+    "browserErrors": 0,
+    "supersededAssertionsRechecked": 13,
+    "report": "/private/tmp/corsica-owner-update-check/verified-report.json"
+  },
+  "assets": {
+    "gallery": 61,
+    "newPhotos": 27,
+    "newWebpVariants": 93,
+    "previousWebpUnchanged": 122
+  },
+  "accessibility": {
+    "scans": 25,
+    "keyboardChecks": 15,
+    "violations": 0,
+    "finalReviewsTargetedViolations": 0,
+    "finalReviewsTargetedIncomplete": 0,
+    "limitation": "Photo/gradient backgrounds require manual contrast review"
+  },
+  "noJavaScript": {
+    "checks": 6,
+    "failures": 0,
+    "resourceErrors": 0
+  },
+  "initialValidation2026_10_06": {
+    "date": "2026-10-06",
+    "browser": {
+      "routes": 27,
+      "widths": [
+        1440,
+        1280,
+        768,
+        390,
+        320
+      ],
+      "visits": 135,
+      "checks": 1506,
+      "failures": 0,
+      "consoleErrors": 0
+    },
+    "mobileFinal": {
+      "widths": [
+        320,
+        390
+      ],
+      "visits": 54,
+      "checks": 651,
+      "failures": 0,
+      "consoleErrors": 0
+    },
+    "accessibility": {
+      "scans": 25,
+      "keyboardChecks": 15,
+      "failures": 0,
+      "limitation": "Photo/gradient backgrounds require manual contrast review"
+    }
+  }
+}

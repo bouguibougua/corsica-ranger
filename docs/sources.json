@@ -1,0 +1,357 @@
+{
+  "checked_on": "2026-10-06",
+  "home": {
+    "source": "https://corsicaranger.com/",
+    "capacity_buggy": "2 à 5 places",
+    "location": "Campagne bonifacienne, proche des plages de l’Extrême-Sud dont Canetto",
+    "season": "Ouvert toute l’année"
+  },
+  "logo": {
+    "source": "https://corsicaranger.com/templates/corsica/images/logo-2021.jpg",
+    "local": "/private/tmp/corsica-logo-official.jpg",
+    "format": "JPEG",
+    "width": 1200,
+    "height": 68,
+    "note": "Bannière complète, logo Corse et texte sur fond bleu avec panorama Bonifacio à droite."
+  },
+  "buggy": {
+    "source": "https://corsicaranger.com/location-ranger",
+    "capacity": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "guide": "Moniteur local diplômé d’État BPJEPS",
+    "morning_departure": "9h45",
+    "offers": [
+      {
+        "name": "Matinée 1h30",
+        "duration": "1h30",
+        "prices_eur": {
+          "2": 180,
+          "3": 200,
+          "4": 210,
+          "5": 220
+        }
+      },
+      {
+        "name": "Soirée avec coucher de soleil et bergerie",
+        "duration": "3h",
+        "detail": "2h + coucher de soleil et dégustation à la bergerie",
+        "prices_eur": {
+          "2": 260,
+          "3": 270,
+          "4": 280,
+          "5": 290
+        }
+      },
+      {
+        "name": "Randonnée 3h",
+        "duration": "3h",
+        "prices_eur": {
+          "2": 300,
+          "3": 320,
+          "4": 340,
+          "5": 360
+        }
+      }
+    ],
+    "sunset_departure": "Variable selon saison et coucher de soleil (exigence explicite brief)",
+    "tasting": {
+      "price_eur_per_person": 10,
+      "drinks_included": false,
+      "products": "Produits locaux de l’exploitation de la bergerie"
+    },
+    "five_seats_note": "4 adultes et un enfant de 4 ans",
+    "conditions": {
+      "driver_age": "21 ans",
+      "license_seniority": "plus de 3 ans",
+      "original_license": true,
+      "closed_shoes": "Obligatoires pour tous; tongs et sandales refusées",
+      "deposit_eur": 800,
+      "child_passenger_from": "3 ans",
+      "recommended_booking_advance": "2 à 3 jours",
+      "on_site_booking": "Selon disponibilité",
+      "confirmation": "SMS 2 à 3 jours avant excursion",
+      "drifting": "Interdit"
+    },
+    "bring": [
+      "Eau",
+      "Lunettes de soleil",
+      "Appareil photo",
+      "Vêtements adaptés à la saison et aux salissures"
+    ],
+    "email_booking_fields": [
+      "Nom",
+      "Prénom",
+      "Téléphone",
+      "Nombre de personnes",
+      "Date",
+      "Horaire souhaité"
+    ],
+    "charter_url": "https://corsicaranger.com/images/2026/Charte-de-bon_comportement.pdf",
+    "charter_local": "/private/tmp/corsica-charte.pdf",
+    "charter_extra": {
+      "license_category": "B",
+      "pregnant": "Randonnée interdite aux femmes enceintes",
+      "belts": "Ceinture attachée pour tous",
+      "phone": "Téléphone au volant interdit",
+      "driver_changes": "Accord du guide requis",
+      "animals_and_drones": "Interdits",
+      "smoking": "Interdit pendant randonnée",
+      "deposit_return": "Lendemain si rendu en bon état; inspection différée en lumière insuffisante"
+    }
+  },
+  "quad": {
+    "source": "https://corsicaranger.com/location-quad",
+    "mode": "Location libre sans moniteur avec briefing, initiation et roadbook",
+    "capacity": 2,
+    "engine_cc": 550,
+    "briefing": "45 min; utilisation, contrat, carte et roadbook",
+    "offers": [
+      {
+        "name": "Demi-journée",
+        "times": [
+          "9h → 12h50",
+          "14h → 17h50"
+        ],
+        "seasonal": true,
+        "price_eur": 150,
+        "capacity": 2
+      },
+      {
+        "name": "Journée",
+        "times": [
+          "9h → 16h50"
+        ],
+        "price_eur": 230,
+        "capacity": 2
+      }
+    ],
+    "included": [
+      "Carburant",
+      "Casque",
+      "Gants",
+      "Carte et roadbook"
+    ],
+    "conditions": {
+      "driver_age": "21 ans",
+      "license_seniority": "plus de 3 ans",
+      "original_license": true,
+      "identity_document": true,
+      "closed_shoes": "Obligatoires; tongs et sandales refusées",
+      "deposit_eur": 700,
+      "deposit_method": "Carte bancaire",
+      "child_passenger_from": "7/8 ans",
+      "recommended_booking_advance": "Environ 2 à 3 jours",
+      "confirmation": "SMS 2 à 3 jours avant balade"
+    },
+    "contract_url": "https://corsicaranger.com/images/2026/quad/04-contrats/contrat-de-location-quad.pdf",
+    "terms_url": "https://corsicaranger.com/images/2026/quad/04-contrats/conditions-generales-de-location.pdf",
+    "license_category": "Permis B (contrat officiel)"
+  },
+  "villas": {
+    "source": "https://corsicaranger.com/nos-partenaires",
+    "Lavezzi": {
+      "capacity": 5,
+      "bedrooms_count": null,
+      "bathrooms": "Salle de bain propre à chaque chambre",
+      "pool": "Piscine privée",
+      "spa": true,
+      "equipment": [
+        "Wifi",
+        "Lave-linge",
+        "Lave-vaisselle"
+      ],
+      "style": "Bergerie habillée de pierre de Bonifacio",
+      "location": "Proximité plages Canetto; 20 min Figari et Porto-Vecchio",
+      "official_images": [
+        "https://corsicaranger.com/images/2024/villa-lavezzi/villa-lavezzi-1.jpg",
+        "https://corsicaranger.com/images/2024/villa-lavezzi/villa-lavezzi-2.jpg",
+        "https://corsicaranger.com/images/2024/villa-lavezzi/villa-lavezzi-3.jpg",
+        "https://corsicaranger.com/images/2024/villa-lavezzi/villa-lavezzi-4.jpg",
+        "https://corsicaranger.com/images/2024/villa-lavezzi/villa-lavezzi-5.jpg",
+        "https://corsicaranger.com/images/2024/villa-lavezzi/villa-lavezzi-6.jpg"
+      ]
+    },
+    "Cavallo": {
+      "capacity": 8,
+      "bedrooms_count": 3,
+      "bathrooms": "Salle de bain propre à chacune des 3 chambres",
+      "pool": "Piscine privée",
+      "spa": null,
+      "equipment": [
+        "Wifi",
+        "Lave-linge",
+        "Lave-vaisselle"
+      ],
+      "location": "Proximité plages Canetto; 20 min Figari et Porto-Vecchio",
+      "official_images": [
+        "https://corsicaranger.com/images/2024/villa-cavallo/villa-cavallo-1.jpg",
+        "https://corsicaranger.com/images/2024/villa-cavallo/villa-cavallo-2.jpg",
+        "https://corsicaranger.com/images/2024/villa-cavallo/villa-cavallo-3.jpg",
+        "https://corsicaranger.com/images/2024/villa-cavallo/villa-cavallo-4.jpg",
+        "https://corsicaranger.com/images/2024/villa-cavallo/villa-cavallo-5.jpg",
+        "https://corsicaranger.com/images/2024/villa-cavallo/villa-cavallo-6.jpg"
+      ]
+    },
+    "prices": null,
+    "booking": "Contact"
+  },
+  "history": {
+    "source": "https://corsicaranger.com/historique",
+    "people": [
+      "Marlène",
+      "Jean"
+    ],
+    "land": "1 hectare, campagne bonifacienne, 3 km du centre",
+    "starting_point": "Vie en caravane pendant construction",
+    "first_villa_year": 2006,
+    "construction": "Grande villa en 3 parties, pierres de Bonifacio, entre chênes et oliviers",
+    "motivation": "Passion du sport automobile puis découverte du maquis et partage avec visiteurs",
+    "business_since": {
+      "year": 2008,
+      "source": "https://corsicaranger.com/location-ranger"
+    }
+  },
+  "contact": {
+    "source": "https://corsicaranger.com/contact",
+    "name": "Corsica Ranger / SARL Belle Île",
+    "address": [
+      "Route de Canetto",
+      "Peroxi",
+      "20169 Bonifacio",
+      "Corse"
+    ],
+    "gps": [
+      41.419526,
+      9.185308
+    ],
+    "phones": [
+      "04 95 70 36 20",
+      "06 80 43 70 13"
+    ],
+    "email": "corsicaranger2a@gmail.com",
+    "opening_hours": null,
+    "instagram": "https://www.instagram.com/corsicaranger/",
+    "facebook": "https://www.facebook.com/corsicaranger/?locale=fr_FR",
+    "tiktok": "https://www.tiktok.com/tag/corsicarangers"
+  },
+  "legal": {
+    "source": "https://corsicaranger.com/mentions-legales",
+    "publisher": "SARL Belle Île / Corsica Ranger",
+    "publication_director": "Mme Marlène Boitel",
+    "hosting_as_stated_on_current_site": {
+      "name": "Bulle Communication",
+      "address": [
+        "35 rue du Port",
+        "47230 Lavardac",
+        "France"
+      ],
+      "phone": "+33 5 53 65 87 38"
+    },
+    "photo_credit": "Corsica Ranger",
+    "siret": {
+      "value": "504 423 591 00016",
+      "source": "https://corsicaranger.com/images/2026/quad/04-contrats/conditions-generales-de-location.pdf"
+    },
+    "hosting_note": "Référence du site actuel; actualiser au nouvel hébergement réel avant publication."
+  },
+  "reviews": {
+    "google_direct_access": false,
+    "aggregate_google_rating": null,
+    "note": "Google fourni inaccessible. Extraits Google vérifiables via republication Petit Futé, citer explicitement la provenance; notes individuelles non récupérées, ne pas ajouter étoiles fictives.",
+    "verified_excerpts": [
+      {
+        "author": "Zoe B.",
+        "date": "2025-06-11",
+        "source_platform": "Google, relayé sur Petit Futé",
+        "excerpt": "moniteurs profondément gentils. Ce couple est accueillant, souriants et pédagogues.",
+        "source": "https://www.petitfute.com/v13453-bonifacio-20169/c1171-sports-loisirs/c1251-loisirs-et-sports-mecaniques/559026-corsica-ranger/tous-les-avis.html"
+      },
+      {
+        "author": "Marion M.",
+        "date": "2024-09-23",
+        "source_platform": "Google, relayé sur Petit Futé",
+        "excerpt": "Un superbe moment avec des personnes et un lieu très sympathique !",
+        "source": "https://www.petitfute.com/v13453-bonifacio-20169/c1171-sports-loisirs/c1251-loisirs-et-sports-mecaniques/559026-corsica-ranger/tous-les-avis.html"
+      },
+      {
+        "author": "Yannis T.",
+        "date": "2023-08-28",
+        "source_platform": "Google, relayé sur Petit Futé",
+        "excerpt": "Merci à Marlene et Jean pour cette super sortie en.buggy au coucher du soleil puis diner à la Bergerie.",
+        "source": "https://www.petitfute.com/v13453-bonifacio-20169/c1171-sports-loisirs/c1251-loisirs-et-sports-mecaniques/559026-corsica-ranger/tous-les-avis.html?page=2"
+      }
+    ]
+  },
+  "discrepancies": [
+    "Quad contrat 2026: 140€ + 10€ second passager et 215€ + 15€ = mêmes totaux 150€/230€ affichés page commerciale; ne pas publier tarif solo sans validation car absent page.",
+    "Quad contrat: caution 700€ puis mention 1950€ contradictoire. Retenir 700€ page commerciale dans nouveau site, signaler incohérence doc existant.",
+    "Quad page: avoir 21 ans; contrat: plus de 21 ans; CG: 21 ans minimum. Retenir 21 ans minimum avec plus de 3 ans de permis conformément page/CG.",
+    "Ancienneté permis: page plus de 3 ans, CG au moins 3 ans. Conserver formulation page commerciale plus de 3 ans.",
+    "Quad retard: contrat paliers tarifaires, CG journée supplémentaire. Éviter réécriture des clauses; lien vers documents officiels.",
+    "Buggy 5 places est décrit 4 adultes + enfant de 4 ans, alors âge passager général 3 ans. Reprendre note capacité spécifique et condition générale, validation par contact si besoin.",
+    "Pas d’heures générales officielles sur contact. Horaires de répertoires tiers divergent. Ne pas afficher.",
+    "Pas de nombre de chambres Lavezzi officiel. Ne pas inventer.",
+    "Pas de tarif villas officiel. Demande par contact.",
+    "Pas de note Google agrégée vérifiable directement. Les agrégateurs divergent 4.5/415, 4.6/370, 4.6/344. Ne pas publier."
+  ],
+  "owner_updates_2026_10_07": {
+    "source": "Instructions directes du propriétaire dans la conversation du 7 octobre 2026; prioritaires sur les anciennes pages commerciales.",
+    "buggy_offers": [
+      {
+        "name": "Balade du matin",
+        "duration": "1h30",
+        "prices_eur": {
+          "2": 180,
+          "3": 200,
+          "4": 210,
+          "5": 220
+        }
+      },
+      {
+        "name": "Randonnée de l’après-midi",
+        "duration": "1h30",
+        "prices_eur": {
+          "2": 180,
+          "3": 200,
+          "4": 210,
+          "5": 220
+        }
+      },
+      {
+        "name": "Coucher de soleil",
+        "duration": "3h",
+        "prices_eur": {
+          "2": 260,
+          "3": 270,
+          "4": 280,
+          "5": 290
+        }
+      }
+    ],
+    "buggy_routes": "Trois parcours différents. Horaire de l’après-midi non communiqué, à confirmer par contact.",
+    "buggy_reservation": "Sur place, par téléphone ou par e-mail.",
+    "buggy_safety": "Balade de découverte sans vitesse, dérapage ni drift; chaussures fermées, ceinture, restrictions grossesse conservées.",
+    "quad_half_day": {
+      "one_person_eur": 140,
+      "two_people_eur": 150,
+      "slots": [
+        "9h–12h50",
+        "14h–17h50"
+      ]
+    },
+    "quad_full_day": {
+      "two_people_eur": 230,
+      "slot": "9h–16h50",
+      "note": "Tarif existant conservé; aucun nouveau tarif solo journée communiqué."
+    },
+    "quad_preparation_minutes": 30,
+    "quad_initiation": "Initiation si le visiteur n’a jamais fait de quad.",
+    "images": "12 fichiers fournis, sélection publique des comptes officiels Instagram/Facebook et deux photos du site officiel; originaux et provenance conservés dans image/.",
+    "reviews": "Sélection explicite d’avis Google positifs, extraits repris par Petit Futé. Voir docs/reviews-sources.json. Aucun nombre ni note individuelle non vérifiés.",
+    "motion": "Bouton de pause retiré; préférence système de réduction des animations conservée."
+  }
+}

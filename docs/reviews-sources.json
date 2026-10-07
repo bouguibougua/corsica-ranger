@@ -1,0 +1,73 @@
+{
+  "observedAt": "2026-10-07",
+  "observationTimezone": "Europe/Paris",
+  "dateNote": "La date d’observation est le 7 octobre 2026. Les dates publishedDate ci-dessous sont les dates de dépôt affichées pour les avis, en 2025.",
+  "googleAggregate": {
+    "businessName": "Corsicaranger",
+    "placeId": "ChIJy-pCtPxpqhIRcWBwS7Ea1Qc",
+    "rating": 4.5,
+    "ratingScale": 5,
+    "ratingVerifiedDirectly": true,
+    "reviewCount": null,
+    "sourceUrl": "https://www.google.com/maps/place/?q=place_id:ChIJy-pCtPxpqhIRcWBwS7Ea1Qc",
+    "evidence": {
+      "method": "Consultation publique de Google Maps dans Chrome, sans connexion à un compte.",
+      "visibleRating": "4,5",
+      "accessibleRatingLabel": "4,5 étoiles",
+      "businessWebsite": "https://www.corsicaranger.com/",
+      "publicDisplayNotice": "Vous voyez un affichage limité de Google Maps."
+    },
+    "limitations": [
+      "Le nombre d’avis n’est pas visible dans cet affichage public limité ; aucune valeur n’a été déduite d’une autre plateforme.",
+      "Les avis individuels et leurs liens directs ne sont pas accessibles dans cet affichage.",
+      "La note globale reflète l’observation du 7 octobre 2026 et peut évoluer."
+    ]
+  },
+  "reviewExcerpts": {
+    "sourceUrl": "https://www.petitfute.com/v13453-bonifacio-20169/c1171-sports-loisirs/c1251-loisirs-et-sports-mecaniques/559026-corsica-ranger/tous-les-avis.html",
+    "sourceLabel": "Avis Google repris par Petit Futé",
+    "sourceEvidence": "La page publique restituée par l’outil de consultation web affiche les auteurs, les dates de dépôt et la mention « via Google » pour chacun des quatre avis sélectionnés.",
+    "selection": "Quatre extraits positifs ; cette sélection ne représente pas l’ensemble des avis.",
+    "verbatimWordCount": 19,
+    "reviews": [
+      {
+        "author": "Zoe B.",
+        "publishedDate": "2025-06-11",
+        "quote": "Merci pour ce moment, je recommande !",
+        "rating": null,
+        "directGoogleReviewUrl": null,
+        "displayedOrigin": "via Google"
+      },
+      {
+        "author": "Ludovic W.",
+        "publishedDate": "2025-06-01",
+        "quote": "Je recommande sans réserve",
+        "rating": null,
+        "directGoogleReviewUrl": null,
+        "displayedOrigin": "via Google"
+      },
+      {
+        "author": "Florence D.",
+        "publishedDate": "2025-05-29",
+        "quote": "nous avons passé un super moment",
+        "rating": null,
+        "directGoogleReviewUrl": null,
+        "displayedOrigin": "via Google"
+      },
+      {
+        "author": "Camille D.",
+        "publishedDate": "2025-05-28",
+        "quote": "Accueil très chaleureux",
+        "rating": null,
+        "directGoogleReviewUrl": null,
+        "displayedOrigin": "via Google"
+      }
+    ],
+    "limitations": [
+      "Les extraits sont vérifiés sur la reprise publique de Petit Futé, et non sur une fiche Google individuelle directement consultable.",
+      "Les notes individuelles ne sont pas vérifiables dans le contenu accessible ; aucune étoile individuelle n’a été inventée.",
+      "L’accès direct à Petit Futé dans Chrome rencontre une protection Cloudflare ; le contenu public est accessible par l’outil de consultation web.",
+      "La note 4,6/5 sur 50 avis affichée par Petit Futé appartient à cette plateforme et ne constitue pas le nombre ni la note Google."
+    ]
+  }
+}
